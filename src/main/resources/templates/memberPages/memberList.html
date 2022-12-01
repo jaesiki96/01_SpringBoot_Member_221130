@@ -13,7 +13,8 @@
         <th>name</th>
         <th>age</th>
         <th>phone</th>
-        <th>조회</th>
+        <th>조회(ajax)</th>
+        <th>삭제</th>
     </tr>
     <tr th:each="member: ${memberList}">
         <td th:text="${member.id}"></td>
@@ -24,6 +25,9 @@
         <td th:text="${member.memberPhone}"></td>
         <td>
             <a th:href="@{|/member/${member.id}|}">조회</a>
+        </td>
+        <td>
+            <a th:href="@{|/member/delete/${member.id}|}">삭제</a>
         </td>
     </tr>
 </table>

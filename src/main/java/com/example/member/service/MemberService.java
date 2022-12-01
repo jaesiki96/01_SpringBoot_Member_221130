@@ -48,8 +48,10 @@ public class MemberService {
         List<MemberEntity> memberEntityList = memberRepository.findAll();
         List<MemberDTO> memberDTOList = new ArrayList<>();
         for (MemberEntity memberEntity : memberEntityList) {
-            MemberDTO memberDTO = MemberDTO.toDTO(memberEntity);
-            memberDTOList.add(memberDTO);
+//            MemberDTO memberDTO = MemberDTO.toDTO(memberEntity);
+//            memberDTOList.add(memberDTO);
+            // 한 줄 표현
+            memberDTOList.add(MemberDTO.toDTO(memberEntity));
         }
         return memberDTOList;
     }
@@ -58,9 +60,11 @@ public class MemberService {
     public MemberDTO findById(Long id) {
         Optional<MemberEntity> optionalMemberEntity = memberRepository.findById(id);
         if (optionalMemberEntity.isPresent()) {
-            MemberEntity memberEntity = optionalMemberEntity.get();
-            MemberDTO memberDTO = MemberDTO.toDTO(memberEntity);
-            return memberDTO;
+//            MemberEntity memberEntity = optionalMemberEntity.get();
+//            MemberDTO memberDTO = MemberDTO.toDTO(memberEntity);
+//            return memberDTO;
+            // 한 줄 표현
+            return MemberDTO.toDTO(optionalMemberEntity.get());
         } else {
             return null;
         }
