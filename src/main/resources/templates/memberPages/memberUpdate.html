@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>내 정보 수정</title>
+</head>
+<body>
+<div class="memberUpdate mt-lg-5">
+    <h2>내 정보 수정</h2>
+    <form action="/member/update" method="post" name="updateForm">
+        id: <input type="text" name="id" th:value="${member.id}" class="form-control" readonly> <br>
+        email: <input type="text" name="memberEmail" th:value="${member.memberEmail}" class="form-control"> <br>
+        password: <input type="password" name="memberPassword" th:value="${member.memberPassword}" class="form-control"> <br>
+        name: <input type="text" name="memberName" th:value="${member.memberName}" class="form-control"> <br>
+        age: <input type="text" name="memberAge" th:value="${member.memberAge}" class="form-control"> <br>
+        phone: <input type="text" name="memberPhone" th:value="${member.memberPhone}" class="form-control"> <br>
+        <input type="button" class="btn btn-primary" value="수정" onclick="update()">
+    </form>
+</div>
+</body>
+<script th:inline="javascript">
+    const update = () => {
+        const passwordDB = [[${member.memberPassword}]];
+        const passwordInput = document.getElementById("memberPassword").value;
+        if (passwordDB == passwordInput) {
+            document.updateForm.submit();
+        } else {
+            alert("비밀번호가 틀립니다!!")
+        }
+    }
+</script>
+</html>

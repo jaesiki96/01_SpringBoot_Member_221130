@@ -69,4 +69,23 @@ public class MemberService {
             return null;
         }
     }
+
+    //수정 페이지
+    public MemberDTO findByMemberEmail(String loginEmail) {
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findByMemberEmail(loginEmail);
+        if (optionalMemberEntity.isPresent()) {
+            return MemberDTO.toDTO(optionalMemberEntity.get());
+        } else {
+            return null;
+        }
+    }
+
+    //회원정보 수정
+    //update 도 save 메서드 사용
+    //Entity 에  값이 있으면 update
+    //Entity 에  값이 없으면 insert
+    public void update(MemberDTO memberDTO) {
+        MemberEntity updateEntity = MemberEntity.toUpdateEntity(memberDTO);
+        memberRepository.save(updateEntity);
+    }
 }
