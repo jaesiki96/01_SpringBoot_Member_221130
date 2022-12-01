@@ -47,6 +47,13 @@ public class MemberController {
         }
     }
 
+    //로그아웃
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "index";
+    }
+
     //회원목록
     @GetMapping("/member/")
     public String findAll(Model model) {
@@ -56,7 +63,7 @@ public class MemberController {
     }
 
     //회원조회
-    @GetMapping("/member/{id}")
+    @GetMapping("/{id}")
     public String findById(@PathVariable Long id, Model model) {
         MemberDTO memberDTO = memberService.findById(id);
         model.addAttribute("member", memberDTO);
