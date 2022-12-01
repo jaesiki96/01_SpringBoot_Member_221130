@@ -88,4 +88,9 @@ public class MemberService {
         MemberEntity updateEntity = MemberEntity.toUpdateEntity(memberDTO);
         memberRepository.save(updateEntity);
     }
+
+    //회원삭제
+    public void delete(Long id) {
+        memberRepository.deleteById(id);
+    }
 }

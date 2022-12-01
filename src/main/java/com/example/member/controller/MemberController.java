@@ -86,4 +86,11 @@ public class MemberController {
         memberService.update(memberDTO);
         return "memberPages/memberMain";
     }
+
+    //회원삭제
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id) {
+        memberService.delete(id);
+        return "redirect:/member/";
+    }
 }
