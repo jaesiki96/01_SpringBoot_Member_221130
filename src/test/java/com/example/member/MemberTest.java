@@ -111,5 +111,8 @@ public class MemberTest {
 
         //삭제처리
         memberService.delete(savedId);
+
+        //삭제 처리 확인
+        assertThat(memberService.findById(savedId)).isNull();
     }
 }
