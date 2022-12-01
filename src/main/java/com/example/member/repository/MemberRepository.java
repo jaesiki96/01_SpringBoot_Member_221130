@@ -11,5 +11,4 @@ public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
     //select * from member_table where memberEmail=?
     //findBy = select * from member_table where
     Optional<MemberEntity> findByMemberEmail(String memberEmail);
-
 }

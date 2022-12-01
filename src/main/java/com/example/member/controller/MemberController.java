@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/member")
@@ -18,7 +20,7 @@ public class MemberController {
     //회원가입 페이지
     @GetMapping("/save")
     public String saveForm() {
-        return "memberPages/save";
+        return "memberPages/memberSave";
     }
 
     //회원가입
@@ -31,6 +33,18 @@ public class MemberController {
     //로그인 페이지
     @GetMapping("/login")
     public String loginForm() {
-        return "memberPages/login";
+        return "memberPages/memberLogin";
+    }
+
+    //로그인
+    @PostMapping("/login")
+    public String login(@ModelAttribute MemberDTO memberDTO, HttpSession session) {
+        MemberDTO loginResult = memberService.login(memberDTO);
+        if (loginResult != null) {
+            session.setAttribute("loginEmail", memberDTO.getMemberEmail());
+            return "memberPages/memberMain";
+        } else {
+            return "memberPages/memberLogin";
+        }
     }
 }
