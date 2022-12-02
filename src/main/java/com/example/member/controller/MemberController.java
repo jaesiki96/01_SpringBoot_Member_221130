@@ -143,25 +143,12 @@ public class MemberController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    //수정(axios)
+    @PutMapping("/{id}")
+    public ResponseEntity updateByAxios(@PathVariable Long id,
+                                        @RequestBody MemberDTO memberDTO) {
+        System.out.println("id = " + id + ", memberDTO = " + memberDTO);
+        memberService.update(memberDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
