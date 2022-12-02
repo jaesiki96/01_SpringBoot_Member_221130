@@ -109,12 +109,23 @@ public class MemberController {
         }
     }
 
-    //상세조회
-    @GetMapping("/detail-ajax")
-    public @ResponseBody MemberDTO detailAjax(@RequestParam("id") Long id) {
-        return memberService.findById(id);
-    }
+    //상세조회(ajax)
+//    @GetMapping("/detail-ajax")
+//    public @ResponseBody MemberDTO detailAjax(@RequestParam("id") Long id) {
+//        return memberService.findById(id);
+//    }
 
+    //상세조회(axios)
+    @GetMapping("/ajax/{id}")
+    public ResponseEntity findByIdAxios(@PathVariable Long id) {
+        System.out.println("id = " + id);
+        MemberDTO memberDTO = memberService.findById(id);
+        if (memberDTO != null) {
+            return new ResponseEntity<>(memberDTO, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
 
 
