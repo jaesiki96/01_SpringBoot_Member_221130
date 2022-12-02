@@ -127,6 +127,22 @@ public class MemberController {
         }
     }
 
+    /*
+        get: /member/{id}
+        post: /member/{id}
+        delete: /member/{id}
+        put: /member/{id}
+
+    */
+
+    //삭제(axios)
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteByAxios(@PathVariable Long id) {
+        System.out.println("id = " + id);
+        memberService.delete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 
 
 
