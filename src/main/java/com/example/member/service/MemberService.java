@@ -93,4 +93,14 @@ public class MemberService {
     public void delete(Long id) {
         memberRepository.deleteById(id);
     }
+
+    //이메일 중복체크
+    public String emailDuplicateCheck(String memberEmail) {
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findByMemberEmail(memberEmail);
+        if (optionalMemberEntity.isEmpty()) {
+            return "ok";
+        } else {
+            return "no";
+        }
+    }
 }

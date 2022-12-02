@@ -93,4 +93,11 @@ public class MemberController {
         memberService.delete(id);
         return "redirect:/member/";
     }
+
+    //이메일 중복체크
+    @PostMapping("/dup-check")
+    public @ResponseBody String emailDuplicateCheck(@RequestParam("inputEmail") String memberEmail) {
+        String checkResult = memberService.emailDuplicateCheck(memberEmail);
+        return checkResult;
+    }
 }
