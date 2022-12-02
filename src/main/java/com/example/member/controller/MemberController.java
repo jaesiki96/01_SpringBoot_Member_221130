@@ -103,9 +103,9 @@ public class MemberController {
         String checkResult = memberService.emailDuplicateCheck(memberEmail);
 //        return checkResult;
         if (checkResult != null) {
-            return new ResponseEntity<>(checkResult, HttpStatus.OK);
+            return new ResponseEntity<>("사용해도 됩니다", HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
+            return new ResponseEntity<>("사용할 수 없습니다", HttpStatus.CONFLICT);
         }
     }
 

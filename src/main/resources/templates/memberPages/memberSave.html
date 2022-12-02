@@ -5,6 +5,7 @@
     <title>회원가입</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <script th:src="@{/js/jquery.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
         .memberSave {
             width: 500px;
@@ -32,24 +33,44 @@
     const emailDuplicateCheck = () => {
         const email = document.getElementById("memberEmail").value;
         const checkResult = document.getElementById("email-dup-check");
-        $.ajax({
-            type: "post",
+        axios({
+            method: "post",
             url: "/member/dup-check",
-            dataType: "text",
-            data: {inputEmail: email},
-            success: function (result) {
-                // if (result == "ok") {
-                    checkResult.innerHTML = "사용가능";
-                    checkResult.style.color = "green";
-                // } else {
-                // }
-            },
-            error: function () {
-                console.log("실패");
-                checkResult.innerHTML = "사용불가";
-                checkResult.style.color = "red";
+            params: {
+                inputEmail: email
             }
+        }).then(res => {
+            console.log("then 함수");
+            console.log(res);
+            checkResult.innerHTML = "사용가능";
+            checkResult.style.color = "green";
+        }).catch(res => {
+            console.log("catch 함수");
+            console.log(res);
+            checkResult.innerHTML = "사용불가";
+            checkResult.style.color = "red";
         })
+
+        // $.ajax({
+        //     type: "post",
+        //     url: "/member/dup-check",
+        //     dataType: "text",
+        //     data: {
+        //     inputEmail: email
+        //     },
+        //     success: function (result) {
+        //         // if (result == "ok") {
+        //             checkResult.innerHTML = "사용가능";
+        //             checkResult.style.color = "green";
+        //         // } else {
+        //         // }
+        //     },
+        //     error: function () {
+        //         console.log("실패");
+        //         checkResult.innerHTML = "사용불가";
+        //         checkResult.style.color = "red";
+        //     }
+        // })
     }
 </script>
 </html>
