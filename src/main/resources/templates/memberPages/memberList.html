@@ -3,6 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>회원목록</title>
+    <script th:src="@{/js/jquery.js}"></script>
+    <style>
+        table, th, td {
+            border: 1px solid #bcbcbc;
+        }
+
+        table {
+            width: 600px;
+            height: 200px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 200px;
+        }
+
+        tr, td {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 <table>
@@ -13,6 +31,7 @@
         <th>name</th>
         <th>age</th>
         <th>phone</th>
+        <th>조회</th>
         <th>조회(ajax)</th>
         <th>삭제</th>
     </tr>
@@ -27,9 +46,62 @@
             <a th:href="@{|/member/${member.id}|}">조회</a>
         </td>
         <td>
+            <button th:onclick="findMember([[${member.id}]])" th:text="|조회(ajax)|"></button>
+        </td>
+        <td>
             <a th:href="@{|/member/delete/${member.id}|}">삭제</a>
         </td>
     </tr>
 </table>
+<div id="detail-area">
+
+</div>
 </body>
+<script th:inline="javascript">
+    const findMember = (findId) => {
+        console.log("id값", findId);
+        const detailArea = document.getElementById("detail-area");
+        $.ajax({
+            type: "get",
+            url: "/member/detail-ajax",
+            data: {id: findId},
+            dataType: "json",
+            success: function (member) {
+                console.log("조회결과", member);
+                console.log("조회 ID:", member.id);
+                let result =
+                    "        <table>\n" +
+                    "            <tr>\n" +
+                    "                <th>id</th>\n" +
+                    "                <td>" + member.id + "</td>\n" +
+                    "            </tr>\n" +
+                    "            <tr>\n" +
+                    "                <th>email</th>\n" +
+                    "                <td>" + member.memberEmail + "</td>\n" +
+                    "            </tr>\n" +
+                    "            <tr>\n" +
+                    "                <th>password</th>\n" +
+                    "                <td>" + member.memberPassword + "</td>\n" +
+                    "            </tr>\n" +
+                    "            <tr>\n" +
+                    "                <th>name</th>\n" +
+                    "                <td> " + member.memberName + "</td>\n" +
+                    "            </tr>\n" +
+                    "            <tr>\n" +
+                    "                <th>age</th>\n" +
+                    "                <td>" + member.memberAge + "</td>\n" +
+                    "            </tr>\n" +
+                    "            <tr>\n" +
+                    "                <th>phone</th>\n" +
+                    "                <td>" + member.memberPhone + "</td>\n" +
+                    "            </tr>\n" +
+                    "        </table>";
+                detailArea.innerHTML = result;
+            },
+            error: function () {
+
+            }
+        });
+    }
+</script>
 </html>

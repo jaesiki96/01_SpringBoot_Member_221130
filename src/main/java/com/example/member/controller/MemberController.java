@@ -109,4 +109,32 @@ public class MemberController {
         }
     }
 
+    //상세조회
+    @GetMapping("/detail-ajax")
+    public @ResponseBody MemberDTO detailAjax(@RequestParam("id") Long id) {
+        return memberService.findById(id);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
