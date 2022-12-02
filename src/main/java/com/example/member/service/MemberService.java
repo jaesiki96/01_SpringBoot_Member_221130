@@ -100,7 +100,7 @@ public class MemberService {
         if (optionalMemberEntity.isEmpty()) {
             return "ok";
         } else {
-            return "no";
+            return null;
         }
     }
 }

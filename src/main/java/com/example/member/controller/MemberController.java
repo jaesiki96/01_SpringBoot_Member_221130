@@ -4,6 +4,8 @@ import com.example.member.dto.MemberDTO;
 import com.example.member.repository.MemberRepository;
 import com.example.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -96,8 +98,15 @@ public class MemberController {
 
     //이메일 중복체크
     @PostMapping("/dup-check")
-    public @ResponseBody String emailDuplicateCheck(@RequestParam("inputEmail") String memberEmail) {
+//    public @ResponseBody String emailDuplicateCheck(@RequestParam("inputEmail") String memberEmail) {
+    public ResponseEntity emailDuplicateCheck(@RequestParam("inputEmail") String memberEmail) {
         String checkResult = memberService.emailDuplicateCheck(memberEmail);
-        return checkResult;
+//        return checkResult;
+        if (checkResult != null) {
+            return new ResponseEntity<>(checkResult, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
     }
+
 }
