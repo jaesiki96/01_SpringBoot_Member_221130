@@ -16,6 +16,7 @@
 <div class="memberLogin mt-lg-5">
     <h2>로그인</h2>
     <form action="/member/login" method="post">
+        <input type="hidden" name="redirectURL" th:value="${redirectURL}">
         <input type="text" name="memberEmail" class="form-control" placeholder="이메일"> <br>
         <input type="password" name="memberPassword" class="form-control" placeholder="비밀번호"> <br>
         <input type="submit" class="btn btn-primary" value="로그인">

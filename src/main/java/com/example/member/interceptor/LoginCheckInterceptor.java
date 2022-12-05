@@ -12,16 +12,11 @@ import java.io.IOException;
 // 요청한 주소로 보내줌.
 // 로그인 상태라면 넘어감
 public class LoginCheckInterceptor implements HandlerInterceptor {
-    // implements 는 interface 구현
-    // extends 는 상속
-    // @Override = 재 정의
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
-        // 요청한 주소 값을 가져올 수 있다.
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
+                             Object handler) throws IOException {
         String requestURL = request.getRequestURI();
-        System.out.println("request = " + request + ", response = " + response + ", handler = " + handler);
-        // 재 정의 시 부모 메서드가 HttpSession session 을 정의하지 않았으면, 자식도 HttpSession session 을 위에서 정의할 수 없기 때문에
-        // 여기서 정의하는 것!
+        System.out.println("requestURL = " + requestURL);
         HttpSession session = request.getSession();
         if (session.getAttribute("loginEmail") == null) {
             response.sendRedirect("/member/login?redirectURL=" + requestURL);
