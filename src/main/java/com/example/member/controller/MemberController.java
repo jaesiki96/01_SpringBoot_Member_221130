@@ -1,7 +1,6 @@
 package com.example.member.controller;
 
 import com.example.member.dto.MemberDTO;
-import com.example.member.repository.MemberRepository;
 import com.example.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
