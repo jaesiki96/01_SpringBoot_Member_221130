@@ -23,12 +23,12 @@
 </body>
 <script th:inline="javascript">
     const updateAxios = () => {
-        const id = document.getElementsByName("id")[0].value;
-        const email = document.querySelector("memberEmail")[0].value;
-        const password = document.querySelector("memberPassword")[0].value;
-        const name = document.querySelector("memberName")[0].value;
-        const age = document.querySelector("memberAge")[0].value;
-        const phone = document.querySelector("memberPhone")[0].value;
+        const id = document.querySelector('input[name="id"]').value;
+        const email = document.querySelector('input[name="memberEmail"]').value;
+        const password = document.getElementsByName("memberPassword")[0].value;
+        const name = document.getElementsByName("memberName")[0].value;
+        const age = document.getElementsByName("memberAge")[0].value;
+        const phone = document.getElementsByName("memberPhone")[0].value;
         // const id1 = document.querySelector("input[name='id']").value;
         // const ids = document.getElementsByName("id");
         console.log("id", id);
